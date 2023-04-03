@@ -5,16 +5,37 @@ import './App.css'
 const App = () => {
   const [squares, setSquares] = useState(Array(9).fill(null))
 
-  // const [playerOne, setPlayerOne] = useState(true)
+  const [playerOne, setPlayerOne] = useState(true)
 
+   
   // const handleClickP1 = (clickedSquare) => {
   //   const updatedSquares = [...squares]
   //   updatedSquares[clickedSquare] = "X"
   //   setSquares(updatedSquares)
   //   setPlayerOne(false)
   // }
+
+  // const handleClickP2 = (clickedSquare) => {
+  //   const updatedSquares = [...squares]
+  //   updatedSquares[clickedSquare] = "O"
+  //   setSquares(updatedSquares)
+  //   setPlayerOne(true)
+  // }
   
-  // const playerTurn = 9
+  const handleClickP1 = (clickedSquare) => {
+    let turns = 9
+    if (turns % 2 === 0){ 
+    const updatedSquares = [...squares]
+    updatedSquares[clickedSquare] = "X"
+    setSquares(updatedSquares)
+    turns -= 1
+    } else {
+      const updatedSquares = [...squares]
+    updatedSquares[clickedSquare] = "0"
+    setSquares(updatedSquares)
+    turns -= 1
+    }
+    
 
   return(
     <>
@@ -26,6 +47,7 @@ const App = () => {
             value={value}
             index={index}
             key={index}
+            handleClickP1={handleClickP1}
             />
           )})
           }
