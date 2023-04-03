@@ -1,8 +1,15 @@
 import React from 'react'
 
-const Square = (props) => {
+const Square = ( {value} ) => {
+  
+  // const handleClick = () => {
+    console.log("clicked")
+  // }
   return (
-    <div className="square"></div>
+    <div className="square" >
+    {value}
+    </div>
   )
 }
+
 export default Square

@@ -3,3 +3,15 @@
   height: 100px;
   width: 100px;
 }
+
+.board {
+  display:flex;
+  flex-wrap: wrap;
+  width: 610px;
+  margin: 0 auto;
+  width: 320px
+}
+
+.title { 
+  text-align: center;
+}
