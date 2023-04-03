@@ -1,8 +1,15 @@
 import React from 'react'
 
-const Square = ( {handleClickP1} ) => {
+const Square = ( {value} ) => {
+  
+  // const handleClick = () => {
+    console.log("clicked")
+  // }
   return (
-    <div className="square" onClick={handleClickP1}></div>
+    <div className="square" >
+    {value}
+    </div>
   )
 }
+
 export default Square

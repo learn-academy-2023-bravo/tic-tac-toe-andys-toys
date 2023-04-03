@@ -5,28 +5,30 @@ import './App.css'
 const App = () => {
   const [squares, setSquares] = useState(Array(9).fill(null))
 
-  const [playerOne, setPlayerOne] = useState("p1")
+  // const [playerOne, setPlayerOne] = useState(true)
 
-  const handleClickP1 = (clickedSquare) => {
-    let updateBoard = [...squares]
-    setSquares
-  }
+  // const handleClickP1 = (clickedSquare) => {
+  //   const updatedSquares = [...squares]
+  //   updatedSquares[clickedSquare] = "X"
+  //   setSquares(updatedSquares)
+  //   setPlayerOne(false)
+  // }
+  
+  // const playerTurn = 9
 
-
-
-  return (
+  return(
     <>
       <h1 className="title">Tic Tac Toe </h1>
       <div className="board">
-        <Square />
-        <Square />
-        <Square />
-        <Square />
-        <Square />
-        <Square />
-        <Square />
-        <Square />
-        <Square />
+          {squares.map((value, index) => {
+            return(
+            <Square 
+            value={value}
+            index={index}
+            key={index}
+            />
+          )})
+          }
       </div>
     </>
   )
