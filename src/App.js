@@ -1,45 +1,61 @@
 import React, { useState } from 'react'
 import Square from './components/Square'
 import './App.css'
+import { click } from '@testing-library/user-event/dist/click'
 
 const App = () => {
   const [squares, setSquares] = useState(Array(9).fill(null))
 
-  const [playerOne, setPlayerOne] = useState(true)
+  const [turns, setTurns] = useState(9)
 
-   
-  // const handleClickP1 = (clickedSquare) => {
-  //   const updatedSquares = [...squares]
-  //   updatedSquares[clickedSquare] = "X"
-  //   setSquares(updatedSquares)
-  //   setPlayerOne(false)
-  // }
+  const [clickedSquares, setClickedSquares] = useState(Array(9).fill(false))
 
-  // const handleClickP2 = (clickedSquare) => {
-  //   const updatedSquares = [...squares]
-  //   updatedSquares[clickedSquare] = "O"
-  //   setSquares(updatedSquares)
-  //   setPlayerOne(true)
-  // }
-  
-  const handleClickP1 = (clickedSquare) => {
-    let turns = 9
-    if (turns % 2 === 0){ 
-    const updatedSquares = [...squares]
-    updatedSquares[clickedSquare] = "X"
-    setSquares(updatedSquares)
-    turns -= 1
-    } else {
-      const updatedSquares = [...squares]
-    updatedSquares[clickedSquare] = "0"
-    setSquares(updatedSquares)
-    turns -= 1
-    }
+  const handleClickP1 = (index) => {
+    const updatedClickedSquares = [...clickedSquares]
     
+    if (updatedClickedSquares[index]) {
+      return 
+    }
+
+    updatedClickedSquares[index] = true
+
+    setClickedSquares(updatedClickedSquares)
+    
+    setTurns((previousTurns) => previousTurns - 1)
+    setSquares((previousSquares) => {
+    const updatedSquares = [...previousSquares]
+   
+      
+    if ( turns % 2 === 0) {
+        updatedSquares[index] = "❌"
+        setSquares(updatedSquares)
+        
+      } else if (turns % 2 !== 0) {
+        updatedSquares[index] = "🅾"
+        setSquares(updatedSquares)
+      }
+      return updatedSquares
+    })
+  }
+
+/*
+the turns variable needs to be outside our function 
+
+and we need to set that to its own state
+
+then we update that state in the handleclick function
+no we should be able to just move that variable outside of the function
+
+and then do a state setstate for the turns
+
+then we add the set state turns to the function to have it updtae after it turns it to x
+
+*/
 
   return(
     <>
       <h1 className="title">Tic Tac Toe </h1>
+      {/* <button type="button" onclick="window.location.reload()">Restart Game</button> */}
       <div className="board">
           {squares.map((value, index) => {
             return(
@@ -51,9 +67,10 @@ const App = () => {
             />
           )})
           }
+          <p>Turns Left : {turns}</p>
       </div>
     </>
   )
-}
 
+}
 export default App
