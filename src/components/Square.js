@@ -6,7 +6,7 @@ const Square = ( {value, index, handleClickP1,} ) => {
     handleClickP1(index)
    }
   return (
-    <div className="square" onClick={handleClick} >
+    <div className="square" onClick={handleClick}>
     {value}
     </div>
   )
